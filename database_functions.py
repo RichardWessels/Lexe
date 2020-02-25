@@ -1,6 +1,5 @@
 import sqlite3 as sql 
 
-
 def create_connection(db_file):
     """ 
     create a database connection to the SQLite database
@@ -17,12 +16,11 @@ def create_connection(db_file):
  
     return conn
 
-def add_word(conn, word, definition):
-    sql = '''INSERT INTO words (word, definition) VALUES (?, ?);'''
-    parame = (word, definition)
+def add_word(conn, word):
+    sql = '''INSERT INTO words (word) VALUES (?, ?);'''
 
     cur = conn.cursor()
-    cur.execute(sql, parame)
+    cur.execute(sql, (word,))
     return cur.lastrowid
 
 def find_word(conn, word):
